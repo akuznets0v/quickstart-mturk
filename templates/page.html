@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sample Page</title>
+  <meta name="description" content="A clustering interface!">
+  <meta name="author" content="SitePoint">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css">
+  <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div id="wrapper">
+  Click the image to finish!
+  <img src="{{ url_for('static', filename='example_static_image.jpg') }}" id = "example" alt="example">
+
+  <div id="end-dialog-message" title="Ready to submit?">
+  </div>
+  <form id = "endForm" action="{{ name.amazon_host }}" method="POST">
+      <input type="hidden" id="user-input" value="" name="user-input"/>
+      <input type="hidden" id="assignmentId" value="{{ name.assignment_id }}" name="assignmentId"/>
+      <input type="hidden" id="workerId" value="{{ name.worker_id }}" name="workerId"/>
+      <input type="hidden" id="hitId" value="{{ name.hit_id }}" name="hitId"/>
+  </form>
+
+</body>
+
+<script>
+
+  
+
+  function endDialog()
+  {
+    $( "#end-dialog-message" ).dialog({
+
+      resizable: false,
+      height:140,
+      modal: true,
+      buttons: {
+        "Submit Results?": function() {
+          var string = "whateverFinalResultsWeWantToPass";
+          $('input[name="user-input"]').val(string);
+          $("#endForm").submit();
+          $( this ).dialog( "close" );
+          // alert("Just in case, this blacks out the screen");
+          $("#wrapper").remove();
+          $("body").append('<div id="endsplash" style ="height:100%;width:100%;top:0px;left:0px;z-index:999;background:rgba(0,0,0,1);"> </div>');
+        },
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+    
+    
+  }
+
+  $('#example').click(function(){
+    endDialog();
+  });
+
+  </script>
+
+</html>
