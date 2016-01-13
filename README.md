@@ -10,7 +10,7 @@ To easily start developing crowdsourcing tasks without going from blogpost to bl
 * Amazon Mechanical Turk will post your HIT, and IFrame your url in when a user accepts it.
 * After completion, head to Mechanical to see collected data and accept work. Note that there are programmatic ways to do this (will add to this repository, time permitting) 
 
-# To deploy
+# To deploy via Heroku
 Download the heroku toolbelt, login, run 'heroku create' in the directory, and push the code to the heroku repository created via 'git push heroku master'. 
 # To make HITs
 Update the url variable in post_hits.py to correctly point to your application and then execute post_hits.py
