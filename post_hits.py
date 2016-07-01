@@ -15,9 +15,9 @@ DEBUG = True
 
 #This allows us to specify whether we are pushing to the sandbox or live site.
 if DEV_ENVIROMENT_BOOLEAN:
-    AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
+    AMAZON_HOST = "mechanicalturk.sandbox.amazonaws.com"
 else:
-    AMAZON_HOST = "https://www.mturk.com/mturk/externalSubmit"
+    AMAZON_HOST = "mechanicalturk.amazonaws.com"
 
 connection = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY_ID,
                              aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
